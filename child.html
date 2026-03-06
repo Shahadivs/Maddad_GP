@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مدد | دخول الطفل</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-main">
+  <div class="bg-blur bg-blur-top"></div>
+  <div class="bg-blur bg-blur-bottom"></div>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="logo.png" class="logo small-logo" alt="شعار مدد" />
+        <h1 class="auth-title">دخول الطفل</h1>
+        <p class="auth-subtitle">سجّل الدخول للانتقال إلى صفحة الألعاب</p>
+      </div>
+
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" id="childLoginEmail" placeholder="example@email.com" />
+      </div>
+
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="childLoginPassword" placeholder="********" />
+      </div>
+
+      <button class="main-btn" onclick="childLogin()">دخول الطفل</button>
+
+      <div class="back-link-wrap">
+        <a href="index.html" class="back-link">← العودة للصفحة الرئيسية</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
