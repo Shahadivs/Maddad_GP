@@ -1,202 +1,74 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مدد | MADDAD</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مدد | MADDAD</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
+<div class="container">
 
-  <!-- الصفحة الأولى -->
-  <section class="page active" id="rolePage">
-    <div class="role-card">
-      <div class="logo-area">
-        <img src="logo.png" alt="شعار مدد" class="main-logo">
-      </div>
+    <div class="welcome-section">
 
-      <div class="welcome-text">
-        <h2>من المستخدم؟</h2>
-        <p>اختر نوع المستخدم للانتقال إلى الصفحة المناسبة</p>
-      </div>
+        <div class="logo-circle">
+            <img src="logo.png">
+        </div>
 
-      <div class="role-buttons">
-        <button class="role-btn parent-btn" onclick="goToPage('parentAuthPage')">
-          <div class="role-icon">👨‍👩‍👧</div>
-          <div class="role-info">
-            <h3>ولي الأمر</h3>
-            <span>الدخول لإدارة الحساب والاستبيان</span>
-          </div>
-        </button>
+        <h1 class="welcome-title">
+            مرحباً بكم في تطبيق مدد
+        </h1>
 
-        <button class="role-btn child-btn" onclick="goToPage('childLoginPage')">
-          <div class="role-icon">🧒</div>
-          <div class="role-info">
-            <h3>الطفل</h3>
-            <span>الدخول إلى صفحة الألعاب</span>
-          </div>
-        </button>
-      </div>
+        <p class="welcome-text">
+            هلا والله! مع مدد نساعدك تتابع نمو طفلكم
+            ونكتشف احتياجاته خطوة بخطوة.
+        </p>
+
     </div>
-  </section>
 
-  <!-- صفحة ولي الأمر: login / signup -->
-  <section class="page" id="parentAuthPage">
-    <div class="simple-page-card">
-      <div class="logo-area small-logo-area">
-        <img src="logo.png" alt="شعار مدد" class="main-logo small-logo">
-      </div>
 
-      <button class="back-btn" onclick="goToPage('rolePage')">← رجوع</button>
+    <div class="user-section">
 
-      <h2>مرحبًا بولي الأمر</h2>
-      <p class="subtitle">يمكنك تسجيل الدخول أو إنشاء حساب جديد</p>
+        <h2 class="user-heading">
+            من المستخدم؟
+        </h2>
 
-      <div class="action-buttons">
-        <button class="main-action-btn" onclick="goToPage('parentLoginPage')">تسجيل الدخول</button>
-        <button class="secondary-action-btn" onclick="goToPage('parentSignupPage')">إنشاء حساب</button>
-      </div>
+        <div class="role-grid">
+
+            <div class="role-card parent" onclick="goParent()">
+
+                <div class="role-text">
+                    <h3>ولي الأمر</h3>
+                    <p>الدخول لإدارة الحساب والاستبيان</p>
+                </div>
+
+                <div class="icon">👨‍👩‍👧</div>
+
+            </div>
+
+
+            <div class="role-card child" onclick="goChild()">
+
+                <div class="role-text">
+                    <h3>الطفل</h3>
+                    <p>الدخول إلى صفحة الألعاب</p>
+                </div>
+
+                <div class="icon">🧒</div>
+
+            </div>
+
+        </div>
+
     </div>
-  </section>
 
-  <!-- صفحة login ولي الأمر -->
-  <section class="page" id="parentLoginPage">
-    <div class="simple-page-card">
-      <div class="logo-area small-logo-area">
-        <img src="logo.png" alt="شعار مدد" class="main-logo small-logo">
-      </div>
+</div>
 
-      <button class="back-btn" onclick="goToPage('parentAuthPage')">← رجوع</button>
+<script src="script.js"></script>
 
-      <h2>تسجيل دخول ولي الأمر</h2>
-      <p class="subtitle">أدخل البريد الإلكتروني وكلمة المرور</p>
-
-      <div class="form-group">
-        <label>البريد الإلكتروني</label>
-        <input type="email" id="parentLoginEmail" placeholder="example@email.com">
-      </div>
-
-      <div class="form-group">
-        <label>كلمة المرور</label>
-        <input type="password" id="parentLoginPassword" placeholder="••••••••">
-      </div>
-
-      <button class="submit-btn" onclick="parentLogin()">دخول</button>
-
-      <p class="switch-text">
-        ما عندك حساب؟
-        <span onclick="goToPage('parentSignupPage')">إنشاء حساب</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- صفحة sign up ولي الأمر -->
-  <section class="page" id="parentSignupPage">
-    <div class="simple-page-card">
-      <div class="logo-area small-logo-area">
-        <img src="logo.png" alt="شعار مدد" class="main-logo small-logo">
-      </div>
-
-      <button class="back-btn" onclick="goToPage('parentAuthPage')">← رجوع</button>
-
-      <h2>إنشاء حساب جديد</h2>
-      <p class="subtitle">أدخل بيانات ولي الأمر والطفل</p>
-
-      <div class="form-group">
-        <label>اسم الطفل</label>
-        <input type="text" id="signupChildName" placeholder="مثال: سارة">
-      </div>
-
-      <div class="form-group">
-        <label>البريد الإلكتروني</label>
-        <input type="email" id="signupEmail" placeholder="example@email.com">
-      </div>
-
-      <div class="form-group">
-        <label>كلمة المرور</label>
-        <input type="password" id="signupPassword" placeholder="••••••••">
-      </div>
-
-      <button class="submit-btn" onclick="parentSignup()">إنشاء الحساب</button>
-
-      <p class="switch-text">
-        عندك حساب؟
-        <span onclick="goToPage('parentLoginPage')">تسجيل الدخول</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- صفحة login الطفل -->
-  <section class="page" id="childLoginPage">
-    <div class="simple-page-card">
-      <div class="logo-area small-logo-area">
-        <img src="logo.png" alt="شعار مدد" class="main-logo small-logo">
-      </div>
-
-      <button class="back-btn" onclick="goToPage('rolePage')">← رجوع</button>
-
-      <h2>دخول الطفل</h2>
-      <p class="subtitle">أدخل البريد الإلكتروني وكلمة المرور للدخول إلى الألعاب</p>
-
-      <div class="form-group">
-        <label>البريد الإلكتروني</label>
-        <input type="email" id="childLoginEmail" placeholder="example@email.com">
-      </div>
-
-      <div class="form-group">
-        <label>كلمة المرور</label>
-        <input type="password" id="childLoginPassword" placeholder="••••••••">
-      </div>
-
-      <button class="submit-btn" onclick="childLogin()">دخول إلى الألعاب</button>
-    </div>
-  </section>
-
-  <!-- صفحة home لولي الأمر -->
-  <section class="page" id="parentHomePage">
-    <div class="simple-page-card">
-      <div class="logo-area small-logo-area">
-        <img src="logo.png" alt="شعار مدد" class="main-logo small-logo">
-      </div>
-
-      <button class="back-btn" onclick="logout()">← تسجيل الخروج</button>
-
-      <h2 id="welcomeParentText">أهلًا ولي أمر الطفل</h2>
-      <p class="subtitle">هذه الصفحة الرئيسية لولي الأمر</p>
-
-      <div class="action-buttons">
-        <button class="main-action-btn">ابدأ الاستبيان الآن</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- صفحة الألعاب للطفل -->
-  <section class="page" id="gamesPage">
-    <div class="simple-page-card">
-      <div class="logo-area small-logo-area">
-        <img src="logo.png" alt="شعار مدد" class="main-logo small-logo">
-      </div>
-
-      <button class="back-btn" onclick="logout()">← تسجيل الخروج</button>
-
-      <h2>صفحة الألعاب 🎮</h2>
-      <p class="subtitle">هنا ستظهر الألعاب المخصصة للطفل</p>
-
-      <div class="games-box">
-        <div class="game-card">لعبة التواصل البصري</div>
-        <div class="game-card">لعبة الاستجابة للاسم</div>
-      </div>
-    </div>
-  </section>
-
-  <div id="toast" class="toast"></div>
-
-  <script src="script.js"></script>
 </body>
 </html>
