@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مدد | الصفحة الرئيسية</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-main" onload="loadHomePage()">
+  <div class="bg-blur bg-blur-top"></div>
+  <div class="bg-blur bg-blur-bottom"></div>
+
+  <div class="home-page">
+    <div class="top-bar">
+      <img src="logo.png" class="logo top-logo" alt="شعار مدد" />
+      <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+    </div>
+
+    <div class="home-card">
+      <h1 class="home-title" id="welcomeMessage">أهلًا ولي أمر الطفل</h1>
+      <p class="home-subtitle">
+        هنا يمكنك متابعة حالة طفلك والبدء في الاستبيان.
+      </p>
+
+      <div class="child-summary">
+        <h3>بيانات الطفل</h3>
+        <p><strong>اسم الطفل:</strong> <span id="childNameText">---</span></p>
+        <p><strong>الحساب:</strong> <span id="emailText">---</span></p>
+      </div>
+
+      <div class="home-actions">
+        <button class="main-btn big-btn" onclick="startQuestionnaire()">
+          ابدأ الاستبيان الآن
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
