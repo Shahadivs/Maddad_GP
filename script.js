@@ -330,6 +330,7 @@ function loadResultPage() {
   `;
 
   resultMainBtn.textContent = btnText;
+  loadRecommendedGamePage();
 }
 
 function handleResultMainAction() {
