@@ -163,6 +163,74 @@ const skillLabelsArabic = {
   play_skills: "مهارات اللعب",
   response_to_commands: "تنفيذ الأوامر"
 };
+function getRecommendedGames() {
+  const assessment = getAssessment();
+
+  if (!assessment || !assessment.currentAnswers) {
+    return [];
+  }
+
+  const answers = assessment.currentAnswers;
+  const games = [];
+
+  // إذا مهارة التواصل البصري ضعيفة
+  if (Number(answers.eye_contact) === 1) {
+    games.push({
+      title: "التواصل البصري",
+      skill: "التواصل البصري",
+      description: "هذه اللعبة تساعد الطفل على تحسين التواصل البصري والانتباه أثناء التفاعل.",
+      reason: "تم اقتراح هذه اللعبة لأن نتيجة الطفل تشير إلى حاجة لدعم مهارة التواصل البصري.",
+      page: "eye-contact-game.html"
+    });
+  }
+
+  // إذا مهارة الاستجابة للاسم ضعيفة
+  if (Number(answers.response_to_name) === 1) {
+    games.push({
+      title: "الاستجابة للاسم",
+      skill: "الاستجابة للاسم",
+      description: "هذه اللعبة تساعد الطفل على تحسين الاستجابة عند سماع اسمه بطريقة تفاعلية وممتعة.",
+      reason: "تم اقتراح هذه اللعبة لأن نتيجة الطفل تشير إلى حاجة لدعم مهارة الاستجابة للاسم.",
+      page: "response-name-game.html"
+    });
+  }
+
+  return games;
+}
+
+function loadRecommendedGamePage() {
+  const container = document.getElementById("recommendedGameContainer");
+  if (!container) return;
+
+  const games = getRecommendedGames();
+
+  if (games.length === 0) {
+    container.innerHTML = `
+      <div class="card">
+        <h3>لا توجد ألعاب مقترحة حالياً</h3>
+        <p>لا توجد مهارات مدعومة حالياً تحتاج إلى لعبة مقترحة.</p>
+      </div>
+    `;
+    return;
+  }
+
+  let html = "";
+
+  games.forEach(game => {
+    html += `
+      <div class="card" style="margin-bottom:16px;">
+        <h3>${game.title}</h3>
+        <p><strong>المهارة المستهدفة:</strong> ${game.skill}</p>
+        <p>${game.description}</p>
+        <p><strong>لماذا هذه اللعبة؟</strong></p>
+        <p>${game.reason}</p>
+        <button class="btn-primary" onclick="window.location.href='${game.page}'">ابدأ الآن</button>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
 
 function calculateScore(answersObj) {
   let score = 0;
@@ -516,4 +584,15 @@ function submitFollowup(event) {
 
   saveAssessment(assessment);
   window.location.href = "result.html";
+}
+
+function showPage(page){
+  document.getElementById("gamesPage").style.display = "none";
+  document.getElementById("accountPage").style.display = "none";
+
+  document.getElementById(page).style.display = "block";
+
+  if (page === "gamesPage") {
+    loadRecommendedGamePage();
+  }
 }
