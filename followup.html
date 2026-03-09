@@ -9,20 +9,17 @@
 <body class="bg-main" onload="loadFollowupPage()">
   <div class="bg-blur bg-blur-top"></div>
   <div class="bg-blur bg-blur-bottom"></div>
-
   <div class="form-page">
     <div class="top-bar simple-top">
       <button class="back-btn" onclick="window.location.href='result.html'">العودة</button>
       <img src="logo.png" class="logo top-logo centered-logo" alt="شعار مدد" />
       <div class="top-space"></div>
     </div>
-
     <div class="auth-card questionnaire-card">
       <h1 class="auth-title">أسئلة المتابعة</h1>
       <p class="auth-subtitle">
         نحتاج بعض التفاصيل الإضافية لتحسين دقة النتيجة.
       </p>
-
       <form id="followupForm" onsubmit="submitFollowup(event)">
         <div id="followupContainer"></div>
         <p id="followupError" class="form-error"></p>
@@ -30,7 +27,69 @@
       </form>
     </div>
   </div>
-
   <script src="script.js"></script>
+  <script>
+    const answers = JSON.parse(localStorage.getItem("maddad_answers") || "{}");
+
+    const imitationHTML = `
+      <div class="question-block first-question-block">
+        <div class="question-title">4- التقليد</div>
+        <div class="question-text">حدّدي كل فعل تلاحظينه عند طفلك:</div>
+        <div class="followup-checks">
+          <label class="followup-check-item">
+            <input type="checkbox" name="imitation_checks" />
+            <span>يخرج لسانه</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="imitation_checks" />
+            <span>يصدر أصواتاً مضحكة</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="imitation_checks" />
+            <span>يلوح قاصداً "وداعاً" (أو يشير لـ "وداعاً")</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="imitation_checks" />
+            <span>يصفق بيده</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="imitation_checks" />
+            <span>يضع إصبعه على شفتيه كإشارة لـ "السكوت / الصمت"</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="imitation_checks" />
+            <span>يرسل قبلة في الهواء</span>
+          </label>
+        </div>
+      </div>`;
+
+    const discriminationHTML = `
+      <div class="question-block">
+        <div class="question-title">5- التمييز</div>
+        <div class="question-text">حدّدي كل فعل تلاحظينه عند طفلك:</div>
+        <div class="followup-checks">
+          <label class="followup-check-item">
+            <input type="checkbox" name="discrimination_checks" />
+            <span>يتعرّف على جزء من جسمه عند سؤاله "أين أنفك؟" أو "أين عينك؟"</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="discrimination_checks" />
+            <span>يلتفت أو ينظر إلى والد أو شقيق عند ذكر اسمه "أين ماما؟"</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="discrimination_checks" />
+            <span>يشير إلى غرض مألوف ويومي (مثل كرسي أو مصباح) عند سؤاله "أين الكرسي؟"</span>
+          </label>
+          <label class="followup-check-item">
+            <input type="checkbox" name="discrimination_checks" />
+            <span>يحضر غرضاً مألوفاً ويومياً (مثل ملعقة أو بطانية) عند طلبه "أحضر الملعقة"</span>
+          </label>
+        </div>
+      </div>`;
+
+    const container = document.getElementById("followupContainer");
+    if (answers.imitation === "1")      container.innerHTML += imitationHTML;
+    if (answers.discrimination === "1") container.innerHTML += discriminationHTML;
+  </script>
 </body>
 </html>
